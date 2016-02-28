@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.zouag.fsdocs.signupetudiant"
+    android:background="@android:color/holo_blue_light"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/welcomeview"
+        android:layout_marginTop="20dp"
+        android:weightSum="4"
+
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/nvProf"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:textStyle="bold"    />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="270dp"
+        android:layout_centerVertical="true"
+        android:weightSum="4"
+        android:gravity="center"
+        android:id="@+id/linearLayout"
+        android:background="@android:color/white">
+        <LinearLayout
+            android:layout_width="35dp"
+            android:layout_height="250dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+
+            android:weightSum="1">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/textEmailEtud_new"
+                android:hint="  Email Username"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:drawableLeft="@drawable/c3355c"
+                android:background="@drawable/shape"
+
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/paasswordET_new"
+                android:hint="  Password"
+                android:drawableLeft="@drawable/b3355b"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:background="@drawable/shape"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/confirmpaasswordET_new"
+                android:hint=" Confirm Password"
+                android:drawableLeft="@drawable/b3355b"
+
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:background="@drawable/shape"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:weightSum="2">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/confirmpaasswordET"
+                    android:id="@+id/sigupBtn_new"
+                    android:text="@string/btn_new_std"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/btn_bg"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
