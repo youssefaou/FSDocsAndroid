@@ -1,8 +1,8 @@
 package com.zouag.fsdocs.ui.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.zouag.fsdocs.R;
 import com.zouag.fsdocs.ui.signup.StudentSignupActivity;
 
-public class StudentLoginActivity extends Activity {
+public class StudentLoginActivity extends AppCompatActivity {
 
     private EditText UserName;
     private EditText password;
