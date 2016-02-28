@@ -11,37 +11,34 @@ import android.widget.EditText;
 import com.zouag.fsdocs.R;
 import com.zouag.fsdocs.ui.signup.StudentSignupActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class StudentLoginActivity extends AppCompatActivity {
 
-    private EditText UserName;
-    private EditText password;
-    private Button btnsign;
-    private Button btnProf;
-    private Button btnsignup;
+    @Bind(R.id.usernameText)
+    EditText usernameText;
+    @Bind(R.id.passwordText)
+    EditText passwordText;
+    @Bind(R.id.signinButtonE)
+    Button signinButton;
+    @Bind(R.id.switchToTeacherBtn)
+    Button switchToTeacherBtn;
+    @Bind(R.id.signupButtonE)
+    Button signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_login);
-        btnProf = (Button)findViewById(R.id.button);
-        UserName = (EditText) findViewById(R.id.userNameEditText);
-        password = (EditText) findViewById(R.id.paasswordET);
-        btnsign = (Button) findViewById(R.id.signingBtn);
-        btnsignup = (Button) findViewById(R.id.sigupBtn);
-        btnProf.setOnClickListener(v -> {
+        ButterKnife.bind(this); // Butterknife's setup
+
+        switchToTeacherBtn.setOnClickListener(v -> {
             Intent mIntent = new Intent(StudentLoginActivity.this, TeacherLoginActivity.class);
             startActivity(mIntent);
         });
 
-        UserName.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE ) {
-                testvalide();
-                return true;
-            }
-            return false;
-        });
-
-        password.setOnEditorActionListener((v, actionId, event) -> {
+        usernameText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 testvalide();
                 return true;
@@ -49,25 +46,32 @@ public class StudentLoginActivity extends AppCompatActivity {
             return false;
         });
 
-        btnsign.setOnClickListener(v -> testvalide());
+        passwordText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                testvalide();
+                return true;
+            }
+            return false;
+        });
 
-        btnsignup.setOnClickListener(v -> {
-            Intent mIntent = new Intent(StudentLoginActivity.this,StudentSignupActivity.class);
+        signinButton.setOnClickListener(v -> testvalide());
+
+        signupButton.setOnClickListener(v -> {
+            Intent mIntent = new Intent(StudentLoginActivity.this, StudentSignupActivity.class);
             startActivity(mIntent);
         });
     }
 
     private void testvalide() {
-        String Usernam = UserName.getText().toString();
-        String Password = password.getText().toString();
+        String Usernam = usernameText.getText().toString();
+        String Password = passwordText.getText().toString();
 
         if (TextUtils.isEmpty(Password)) {
-            password.setError(getString(R.string.erreur));
+            passwordText.setError(getString(R.string.erreur));
             return;
         }
         if (TextUtils.isEmpty(Usernam)) {
-            UserName.setError(getString(R.string.erreur));
-            return;
+            usernameText.setError(getString(R.string.erreur));
         }
     }
 

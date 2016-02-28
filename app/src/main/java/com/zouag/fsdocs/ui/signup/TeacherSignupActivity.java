@@ -8,43 +8,47 @@ import android.widget.EditText;
 
 import com.zouag.fsdocs.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class TeacherSignupActivity extends AppCompatActivity {
-    private EditText TextEmail;
-    private EditText TextPassword;
-    private EditText TextConfirmPassword;
-    private Button newAcount;
+
+    @Bind(R.id.teacherEmailText)
+    EditText emailText;
+    @Bind(R.id.teacherPasswordText)
+    EditText passwordText;
+    @Bind(R.id.teacherConfirmPText)
+    EditText confirmPasswordText;
+    @Bind(R.id.teacherSignupBtn)
+    Button signupButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_signup);
-        TextEmail = (EditText)findViewById(R.id.EmailAddressP_new);
-        TextPassword =(EditText)findViewById(R.id.paasswordProf_new);
-        TextConfirmPassword = (EditText)findViewById(R.id.confirmpaasswordProf_new);
-        newAcount =(Button)findViewById(R.id.signupP_new);
-        newAcount.setOnClickListener(v -> testvalide());
+
+        ButterKnife.bind(this);
+        signupButton.setOnClickListener(v -> testvalide());
     }
 
     private void testvalide() {
-        String EmailE = TextEmail.getText().toString();
-        String PasswordE = TextPassword.getText().toString();
-        String confPasswordE = TextConfirmPassword.getText().toString();
+        String EmailE = emailText.getText().toString();
+        String PasswordE = passwordText.getText().toString();
+        String confPasswordE = confirmPasswordText.getText().toString();
 
         if (TextUtils.isEmpty(EmailE)) {
-            TextEmail.setError(getString(R.string.erreur));
+            emailText.setError(getString(R.string.erreur));
             return;
         }
         if (TextUtils.isEmpty(PasswordE)) {
-            TextPassword.setError(getString(R.string.erreur));
+            passwordText.setError(getString(R.string.erreur));
             return;
         }
         if (TextUtils.isEmpty(confPasswordE)) {
-            TextConfirmPassword.setError(getString(R.string.erreur));
+            confirmPasswordText.setError(getString(R.string.erreur));
             return;
         }
         if(!PasswordE.equals(confPasswordE))
-        {
-            TextConfirmPassword.setError(getString(R.string.conf_pas));
-            return;
-        }
+            confirmPasswordText.setError(getString(R.string.conf_pas));
     }
 }

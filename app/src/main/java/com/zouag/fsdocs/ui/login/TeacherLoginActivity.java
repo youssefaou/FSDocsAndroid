@@ -10,47 +10,50 @@ import android.widget.EditText;
 import com.zouag.fsdocs.R;
 import com.zouag.fsdocs.ui.signup.TeacherSignupActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class TeacherLoginActivity extends AppCompatActivity {
-    private Button btnEtudiant;
-    private Button signupP;
-    private Button signinP;
-    private EditText userNameP;
-    private EditText passwordP;
+
+    @Bind(R.id.switchToStudentBtn)
+    Button switchToStudentBtn;
+    @Bind(R.id.signupButtonP)
+    Button signupButton;
+    @Bind(R.id.signinButtonP)
+    Button signinButton;
+    @Bind(R.id.userNameProf)
+    EditText usernameText;
+    @Bind(R.id.passwordProf)
+    EditText passwordText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_login);
-        btnEtudiant = (Button)findViewById(R.id.buttonEtudiant);
-        signupP = (Button)findViewById(R.id.sigupBtnP);
-        userNameP =(EditText)findViewById(R.id.userNameProf);
-        passwordP =(EditText)findViewById(R.id.paasswordProf);
-        signinP = (Button)findViewById(R.id.signingBtn2);
-        btnEtudiant.setOnClickListener(v -> {
+        ButterKnife.bind(this);
+
+        switchToStudentBtn.setOnClickListener(v -> {
             Intent mIntent = new Intent(TeacherLoginActivity.this, StudentLoginActivity.class);
             startActivity(mIntent);
         });
 
-        signupP.setOnClickListener(v -> {
+        signupButton.setOnClickListener(v -> {
             Intent mIntente = new Intent(TeacherLoginActivity.this, TeacherSignupActivity.class);
             startActivity(mIntente);
         });
-        signinP.setOnClickListener(v -> testvalide());
-
-/*
-
-        */
+        signinButton.setOnClickListener(v -> testvalide());
     }
+
     private void testvalide() {
-        String Usernam = userNameP.getText().toString();
-        String Password = passwordP.getText().toString();
+        String Usernam = usernameText.getText().toString();
+        String Password = passwordText.getText().toString();
 
         if (TextUtils.isEmpty(Password)) {
-            passwordP.setError(getString(R.string.erreur));
+            passwordText.setError(getString(R.string.erreur));
             return;
         }
         if (TextUtils.isEmpty(Usernam)) {
-            userNameP.setError(getString(R.string.erreur));
-            return;
+            usernameText.setError(getString(R.string.erreur));
         }
     }
 }

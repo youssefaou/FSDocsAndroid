@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">FSDocs</string>
-    <string name="welcome_string">,, WELCOME TO</string>
-    <string name="signing_string">SIGNING\nFORM ,,</string>
-    <string name="username_hint_string">UserName</string>
+    <string name="welcome_string">WELCOME</string>
+    <string name="signing_string">Log into\nFSDocs</string>
+    <string name="username_hint_string">Username</string>
     <string name="passworrd_hint_string">Password</string>
     <string name="signing_btn_String">SIGN IN</string>
     <string name="signup_btn_String">SIGN UP</string>
-    <string name="prof">Professeur</string>
-    <string name="erreur">Chemps vide</string>
-    <string name="nvProf">SIGNUP NEW STUDENT</string>
-    <string name="nvProf2">SIGNUP NEW TEACHER</string>
-    <string name="btn_new_std">new account</string>
+    <string name="prof">Teacher</string>
+    <string name="erreur">Empty field</string>
+    <string name="nvProf">Sign up for a new student account</string>
+    <string name="nvProf2">Sign up for a new teacher account</string>
+    <string name="btn_new_std">Confirm</string>
     <string name="hintEmail">Email</string>
-    <string name="signing_stringProf">SIGNING\nFORM TEACHER ,,</string>
-    <string name="conf_pas">Password not valide</string>
+    <string name="signing_stringProf">Log into\nFSDocs</string>
+    <string name="conf_pas">Password not valid</string>
 </resources>
