@@ -1,33 +1,27 @@
-package com.zouag.fsdocs;
+package com.zouag.fsdocs.ui.signup;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class signupetudiant extends AppCompatActivity {
+import com.zouag.fsdocs.R;
+
+public class TeacherSignupActivity extends AppCompatActivity {
     private EditText TextEmail;
     private EditText TextPassword;
     private EditText TextConfirmPassword;
     private Button newAcount;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signupetudiant);
-        TextEmail = (EditText)findViewById(R.id.textEmailEtud_new);
-        TextPassword =(EditText)findViewById(R.id.paasswordET_new);
-        TextConfirmPassword = (EditText)findViewById(R.id.confirmpaasswordET_new);
-        newAcount =(Button)findViewById(R.id.sigupBtn_new);
-        newAcount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testvalide();
-            }
-        });
+        setContentView(R.layout.activity_teacher_signup);
+        TextEmail = (EditText)findViewById(R.id.EmailAddressP_new);
+        TextPassword =(EditText)findViewById(R.id.paasswordProf_new);
+        TextConfirmPassword = (EditText)findViewById(R.id.confirmpaasswordProf_new);
+        newAcount =(Button)findViewById(R.id.signupP_new);
+        newAcount.setOnClickListener(v -> testvalide());
     }
 
     private void testvalide() {

@@ -1,14 +1,16 @@
-package com.zouag.fsdocs;
+package com.zouag.fsdocs.ui.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Main2Activity extends AppCompatActivity {
+import com.zouag.fsdocs.R;
+import com.zouag.fsdocs.ui.signup.TeacherSignupActivity;
+
+public class TeacherLoginActivity extends AppCompatActivity {
     private Button btnEtudiant;
     private Button signupP;
     private Button signinP;
@@ -17,35 +19,22 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_teacher_login);
         btnEtudiant = (Button)findViewById(R.id.buttonEtudiant);
         signupP = (Button)findViewById(R.id.sigupBtnP);
         userNameP =(EditText)findViewById(R.id.userNameProf);
         passwordP =(EditText)findViewById(R.id.paasswordProf);
         signinP = (Button)findViewById(R.id.signingBtn2);
-        btnEtudiant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(Main2Activity.this, MainActivity.class);
-                startActivity(mIntent);
-            }
-
+        btnEtudiant.setOnClickListener(v -> {
+            Intent mIntent = new Intent(TeacherLoginActivity.this, StudentLoginActivity.class);
+            startActivity(mIntent);
         });
 
-        signupP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntente = new Intent(Main2Activity.this, signupprofesseur.class);
-                startActivity(mIntente);
-            }
-
+        signupP.setOnClickListener(v -> {
+            Intent mIntente = new Intent(TeacherLoginActivity.this, TeacherSignupActivity.class);
+            startActivity(mIntente);
         });
-        signinP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testvalide();
-            }
-        });
+        signinP.setOnClickListener(v -> testvalide());
 
 /*
 
