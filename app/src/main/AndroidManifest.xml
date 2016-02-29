@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.login.StudentLoginActivity"
+            android:name=".ui.StudentActivity"
             android:theme="@style/FullScreenActivityStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,13 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.login.TeacherLoginActivity"
-            android:theme="@style/FullScreenActivityStyle" />
-        <activity
-            android:name=".ui.signup.StudentSignupActivity"
-            android:theme="@style/FullScreenActivityStyle" />
-        <activity
-            android:name=".ui.signup.TeacherSignupActivity"
+            android:name=".ui.TeacherActivity"
             android:theme="@style/FullScreenActivityStyle" />
     </application>
 

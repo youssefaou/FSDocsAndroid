@@ -3,33 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".ui.fragments.student.StudentFrag1">
+    tools:context=".ui.fragments.student.StudentFrag2">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/firstnameTextInput"
+        android:id="@+id/cneTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/firstnameText"
+            android:id="@+id/cneText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your firstname"
+            android:hint="Your CNE"
             android:inputType="textCapWords" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/lastnameTextInput"
+        android:id="@+id/birthdateTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/firstnameTextInput">
+        android:layout_below="@+id/cneTextInput">
 
         <EditText
-            android:id="@+id/lastnameText"
+            android:id="@+id/birthdateText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your lastname"
+            android:hint="Your birth date"
             android:inputType="textCapCharacters" />
 
     </android.support.design.widget.TextInputLayout>
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/lastnameTextInput"
+        android:layout_below="@+id/birthdateTextInput"
         android:layout_centerHorizontal="true"
         android:text="NEXT" />
 

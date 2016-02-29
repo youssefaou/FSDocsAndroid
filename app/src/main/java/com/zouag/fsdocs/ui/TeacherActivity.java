@@ -1,4 +1,4 @@
-package com.zouag.fsdocs.ui.login;
+package com.zouag.fsdocs.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.zouag.fsdocs.R;
-import com.zouag.fsdocs.ui.signup.TeacherSignupActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class TeacherLoginActivity extends AppCompatActivity {
+public class TeacherActivity extends AppCompatActivity {
 
     @Bind(R.id.switchToStudentBtn)
     Button switchToStudentBtn;
@@ -33,14 +32,10 @@ public class TeacherLoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         switchToStudentBtn.setOnClickListener(v -> {
-            Intent mIntent = new Intent(TeacherLoginActivity.this, StudentLoginActivity.class);
+            Intent mIntent = new Intent(TeacherActivity.this, StudentActivity.class);
             startActivity(mIntent);
         });
 
-        signupButton.setOnClickListener(v -> {
-            Intent mIntente = new Intent(TeacherLoginActivity.this, TeacherSignupActivity.class);
-            startActivity(mIntente);
-        });
         signinButton.setOnClickListener(v -> testvalide());
     }
 
