@@ -10,6 +10,9 @@
 
     <style name="FullScreenActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <!--<item name="colorControlNormal">#c5c5c5</item>-->
+        <item name="colorControlActivated">#ffffff</item>
+        <item name="colorControlHighlight">#ff0000</item>
     </style>
 
 </resources>

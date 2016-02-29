@@ -47,7 +47,7 @@
         android:layout_centerVertical="true"
         android:weightSum="4"
         android:gravity="center"
-        android:id="@+id/linearLayout">
+        android:id="@+id/loginLayout">
         <LinearLayout
             android:layout_width="10dp"
             android:layout_height="250dp"

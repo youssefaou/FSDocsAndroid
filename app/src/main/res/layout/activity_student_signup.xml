@@ -18,7 +18,7 @@
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_above="@+id/linearLayout"
+        android:layout_above="@+id/loginLayout"
         android:layout_marginBottom="20dp"
         android:id="@+id/titleLabel"
         android:gravity="center" />
@@ -29,7 +29,7 @@
         android:layout_centerVertical="true"
         android:weightSum="4"
         android:gravity="center"
-        android:id="@+id/linearLayout"
+        android:id="@+id/loginLayout"
         android:background="@android:color/white">
         <LinearLayout
             android:layout_width="35dp"
