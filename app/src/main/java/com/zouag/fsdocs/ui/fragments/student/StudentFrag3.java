@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,7 @@ public class StudentFrag3 extends Fragment {
         boolean passwordLengthStatus = password.length() >= PASSWORD_MIN_CHARACTERS;
 
         if (emailStatus && passwordMatchStatus && passwordLengthStatus) {
-            Log.i("SUCCESS", "SIGNUP SUCCESS");
+            mListener.confirmSignup(email, password);
             return;
         } else if (!emailStatus) {
             dialogMessage = "Please enter a valid email address.";

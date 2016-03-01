@@ -52,10 +52,8 @@ public class StudentFrag1 extends Fragment {
 
     /**
      * @param firstname
-     * @param lastname
-     *
-     * Validates input.
-     * Checks whether the firstname & lastname have reached (at least) their minimum length.
+     * @param lastname  Validates input.
+     *                  Checks whether the firstname & lastname have reached (at least) their minimum length.
      */
     private void validateInput(String firstname, String lastname) {
         String dialogTitle = "Error";

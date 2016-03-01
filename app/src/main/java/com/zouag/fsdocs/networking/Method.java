@@ -1,4 +1,4 @@
-package com.zouag.fsdocs.utils;
+package com.zouag.fsdocs.networking;
 
 /**
  * Created by Moham on 1/24/2016.

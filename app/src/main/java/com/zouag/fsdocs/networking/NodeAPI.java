@@ -1,7 +1,5 @@
 package com.zouag.fsdocs.networking;
 
-import com.zouag.fsdocs.utils.Method;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,9 +13,12 @@ import okhttp3.RequestBody;
  * Created by Moham on 1/22/2016.
  */
 public class NodeAPI {
+    public static final String SERVER_IP_ADDRESS = "http://192.168.173.1:5000";
     // Setup MIME type
     public static final MediaType JSON =
             MediaType.parse("application/json; charset=utf-8");
+
+    private static final String STUDENT_SIGNUP_POST = "/student/signup";
 
     /**
      * @param param  the request's body that contains the request's params to the server
@@ -68,5 +69,9 @@ public class NodeAPI {
         }
 
         return sb.toString();
+    }
+
+    public static String getStudentSignupURL() {
+        return SERVER_IP_ADDRESS + STUDENT_SIGNUP_POST;
     }
 }

@@ -3,16 +3,22 @@ package com.zouag.fsdocs.ui;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.zouag.fsdocs.R;
+import com.zouag.fsdocs.networking.NodeAPI;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag1;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag2;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag3;
+import com.zouag.fsdocs.networking.Method;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +27,11 @@ import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class StudentActivity extends AppCompatActivity implements
         StudentFrag1.FirstFragListener,
@@ -29,6 +40,7 @@ public class StudentActivity extends AppCompatActivity implements
 
     private JSONObject mUser; // the details of the user currently registering
     private boolean isSignin = true;
+    OkHttpClient client = new OkHttpClient();
 
     @Bind(R.id.viewSwitcherLayout)
     ViewSwitcher mViewSwitcher;
@@ -38,6 +50,10 @@ public class StudentActivity extends AppCompatActivity implements
     TextView mSignupTextview;
     @Bind(R.id.switchLabel)
     TextView switchLabel;
+    @Bind(R.id.emailText)
+    EditText emailText;
+    @Bind(R.id.passwordText)
+    EditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,12 +152,90 @@ public class StudentActivity extends AppCompatActivity implements
             mUser.put("email", email);
             mUser.put("password", password);
 
-            throw new IOException("test");
+            postSignup(NodeAPI.getStudentSignupURL(), mUser);
 
         } catch (JSONException | IOException e) {
             e.printStackTrace();
-
-            System.out.println(mUser.toString());
         }
+    }
+
+    /**
+     * @param url
+     * @param userInfo
+     * @throws IOException
+     *
+     * Sends the sign up, HTTP request
+     */
+    void postSignup(String url, JSONObject userInfo) throws IOException {
+        Request request = NodeAPI.createHTTPRequest(userInfo, url, Method.POST);
+
+        client.newCall(request)
+                .enqueue(new Callback() {
+                    @Override
+                    public void onFailure(final Call call, IOException e) {
+                        runOnUiThread(() ->
+                                showSignupResultDialog("Unknown error",
+                                        "An unknown error occured while trying to " +
+                                                "reach out to the server. Please try again.",
+                                        "OK",
+                                        null));
+                    }
+
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        final String res = response.body().string();
+                        final JSONObject obj;
+
+                        try {
+                            obj = new JSONObject(res);
+                            runOnUiThread(() ->
+                                    showSignupResultDialog("Success",
+                                            "You have successfully registered your new account!",
+                                            "LOG IN NOW",
+                                            (dialog, which) -> {
+                                                try {
+                                                    Log.i("User", obj.getString("username"));
+                                                    navigateToLoginTab(obj.getString("username"));
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * @param title of the dialog
+     * @param message of the dialog
+     * @param actionText text of the dialog's action button
+     * @param listener on the action button
+     *
+     * Shows a custom dialog
+     */
+    public void showSignupResultDialog(final String title, final String message, final String actionText,
+                                       final DialogInterface.OnClickListener listener) {
+        runOnUiThread(() -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(StudentActivity.this, R.style.AppCompatAlertDialogStyle);
+            builder.setTitle(title);
+            builder.setMessage(message);
+            builder.setPositiveButton(actionText, listener);
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.show();
+        });
+    }
+
+    /**
+     * @param email of the user who has just registered.
+     * Switches to the Sign in tab of the ViewSwitcher.
+     */
+    private void navigateToLoginTab(String email) {
+        mViewSwitcher.showPrevious();
+        emailText.setText(email);
+        passwordText.requestFocus();
     }
 }

@@ -53,9 +53,7 @@ public class StudentFrag2 extends Fragment {
 
     /**
      * @param cne
-     * @param birthdate
-     *
-     * Validates input.
+     * @param birthdate Validates input.
      */
     private void validateInput(String cne, String birthdate) {
         String dialogTitle = "Error";
