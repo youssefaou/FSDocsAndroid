@@ -18,7 +18,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
 
-        android:text="WELCOME"
+        android:text="@string/welcome"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:id="@+id/logIntoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log into"
+            android:text="@string/log_into"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -64,37 +64,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <LinearLayout
-            android:id="@+id/labelLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/signinLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:background="#4DB6AC"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="SIGN IN"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/signupLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:background="#26A69A"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="SIGN UP"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <include android:id="@+id/labelLayout" layout="@layout/authentification_include" />
 
         <ViewSwitcher
             android:id="@+id/viewSwitcher"
@@ -118,7 +88,7 @@
                         android:id="@+id/emailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Your email"
+                        android:hint="@string/your_email"
                         android:inputType="textEmailAddress"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" />
@@ -134,7 +104,7 @@
                         android:id="@+id/passwordText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Your password"
+                        android:hint="@string/your_password"
                         android:inputType="textPassword"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff" />
@@ -170,7 +140,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="40dp"
         android:paddingTop="5dp"
-        android:text="Not a teacher ?"
+        android:text="@string/switch_to_student"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />

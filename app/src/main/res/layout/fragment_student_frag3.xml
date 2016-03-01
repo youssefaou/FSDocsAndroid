@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:padding="@dimen/authentification_fragment_padding"
     tools:context=".ui.fragments.student.StudentFrag3">
 
     <android.support.design.widget.TextInputLayout
@@ -14,7 +14,7 @@
             android:id="@+id/emailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your email"
+            android:hint="@string/your_email"
             android:inputType="textEmailAddress" />
 
     </android.support.design.widget.TextInputLayout>
@@ -29,7 +29,7 @@
             android:id="@+id/passwordText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your password"
+            android:hint="@string/your_password"
             android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
@@ -44,7 +44,7 @@
             android:id="@+id/confirmText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password, again"
+            android:hint="@string/password_confirmation"
             android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
@@ -57,6 +57,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/confirmTextInput"
         android:layout_centerHorizontal="true"
-        android:text="NEXT" />
+        android:text="@string/next" />
 
 </RelativeLayout>

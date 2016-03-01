@@ -17,4 +17,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">WELCOME</string>
+    <string name="log_into">Log into</string>
+    <string name="your_email">Your email</string>
+    <string name="your_password">Your password</string>
+    <string name="switch_to_teacher">Not a student ?</string>
+    <string name="switch_to_student">Not a teacher ?</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="your_firstname">Your firstname</string>
+    <string name="your_lastname">Your lastname</string>
+    <string name="next">NEXT</string>
+    <string name="your_cne">Your CNE</string>
+    <string name="your_birthdate">Your birth date</string>
+    <string name="password_confirmation">Password, again</string>
+    <string name="your_specialty">Your specialty</string>
 </resources>

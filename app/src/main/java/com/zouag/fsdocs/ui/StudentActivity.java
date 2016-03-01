@@ -62,8 +62,12 @@ public class StudentActivity extends AppCompatActivity implements
             }
         });
 
-        switchLabel.setOnClickListener(v ->
-                startActivity(new Intent(StudentActivity.this, TeacherActivity.class)));
+        switchLabel.setOnClickListener(v -> {
+            Intent intent = new Intent(StudentActivity.this, TeacherActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
 
         displayFragment(0);
     }

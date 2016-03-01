@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.zouag.fsdocs.R;
+import com.zouag.fsdocs.ui.fragments.student.StudentFrag1;
 import com.zouag.fsdocs.ui.fragments.teacher.TeacherFrag1;
 import com.zouag.fsdocs.ui.fragments.teacher.TeacherFrag2;
 
@@ -41,8 +42,12 @@ public class TeacherActivity extends AppCompatActivity
         setContentView(R.layout.activity_teacher_login);
         ButterKnife.bind(this);
 
-        switchLabel.setOnClickListener(v ->
-                startActivity(new Intent(TeacherActivity.this, StudentActivity.class)));
+        switchLabel.setOnClickListener(v -> {
+            Intent intent = new Intent(TeacherActivity.this, StudentActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
 
         mSigninTextview.setOnClickListener(v -> {
             if (!isSignin) {
