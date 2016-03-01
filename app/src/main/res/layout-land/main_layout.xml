@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/titleLayout"
+    android:layout_centerInParent="true"
+    android:layout_weight="60"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <include
+        android:id="@+id/labelLayout"
+        layout="@layout/authentification_include" />
+
+    <include
+        android:id="@+id/viewSwitcherLayout"
+        layout="@layout/login_signup_form_include" />
+
+</LinearLayout>

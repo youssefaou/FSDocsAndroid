@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.zouag.fsdocs.R;
-import com.zouag.fsdocs.ui.fragments.student.StudentFrag1;
 import com.zouag.fsdocs.ui.fragments.teacher.TeacherFrag1;
 import com.zouag.fsdocs.ui.fragments.teacher.TeacherFrag2;
 
@@ -39,7 +38,7 @@ public class TeacherActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_login);
+        setContentView(R.layout.activity_teacher);
         ButterKnife.bind(this);
 
         switchLabel.setOnClickListener(v -> {

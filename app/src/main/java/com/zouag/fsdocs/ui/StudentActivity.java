@@ -42,7 +42,7 @@ public class StudentActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_login);
+        setContentView(R.layout.activity_student);
         ButterKnife.bind(this); // Butterknife's setup
 
         mSigninTextview.setOnClickListener(v -> {
