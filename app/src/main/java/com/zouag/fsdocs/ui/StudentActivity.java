@@ -30,7 +30,7 @@ public class StudentActivity extends AppCompatActivity implements
     private JSONObject mUser; // the details of the user currently registering
     private boolean isSignin = true;
 
-    @Bind(R.id.viewSwitcher)
+    @Bind(R.id.viewSwitcherLayout)
     ViewSwitcher mViewSwitcher;
     @Bind(R.id.signinLabel)
     TextView mSigninTextview;
@@ -62,12 +62,8 @@ public class StudentActivity extends AppCompatActivity implements
             }
         });
 
-        switchLabel.setOnClickListener(v -> {
-            Intent intent = new Intent(StudentActivity.this, TeacherActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        });
+        switchLabel.setOnClickListener(v ->
+                startActivity(new Intent(StudentActivity.this, TeacherActivity.class)));
 
         displayFragment(0);
     }

@@ -8,125 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.StudentActivity">
 
-    <TextView
-        android:id="@+id/welcomeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:paddingBottom="5dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="5dp"
-        android:paddingTop="5dp"
-
-        android:text="@string/welcome"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
+    <include
         android:id="@+id/titleLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/welcomeLabel"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        layout="@layout/authentification_header_include" />
 
-        <TextView
-            android:id="@+id/logIntoLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_into"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/appnameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@android:color/white"
-            android:textSize="35sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <include
         android:id="@+id/mainLayout"
-        android:layout_width="fill_parent"
-
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/switchLabel"
-        android:layout_alignParentBottom="false"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <include android:id="@+id/labelLayout" layout="@layout/authentification_include" />
-
-        <ViewSwitcher
-            android:id="@+id/viewSwitcher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#4DB6AC">
-
-            <LinearLayout
-                android:id="@+id/loginLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="40dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/emailTextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/emailText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/your_email"
-                        android:inputType="textEmailAddress"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/passwordTextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/passwordText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/your_password"
-                        android:inputType="textPassword"
-                        android:textColor="#ffffff"
-                        android:textColorHint="#ffffff" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text=">>" />
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </ViewSwitcher>
-
-
-    </LinearLayout>
+        layout="@layout/main_layout" />
 
     <TextView
         android:id="@+id/switchLabel"
