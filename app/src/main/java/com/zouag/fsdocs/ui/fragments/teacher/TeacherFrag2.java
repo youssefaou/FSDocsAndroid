@@ -1,4 +1,5 @@
-package com.zouag.fsdocs.ui.fragments.student;
+package com.zouag.fsdocs.ui.fragments.teacher;
+
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -17,10 +18,9 @@ import com.zouag.fsdocs.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class StudentFrag3 extends Fragment {
+public class TeacherFrag2 extends Fragment {
 
     private static final int PASSWORD_MIN_CHARACTERS = 3;
-    private ThirdFragListener mListener;
 
     @Bind(R.id.emailText)
     EditText emailText;
@@ -31,7 +31,9 @@ public class StudentFrag3 extends Fragment {
     @Bind(R.id.nextButton)
     Button nextButton;
 
-    public StudentFrag3() {
+    private SecondFragListener mListener;
+
+    public TeacherFrag2() {
         // Required empty public constructor
     }
 
@@ -39,7 +41,7 @@ public class StudentFrag3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_student_frag3, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_frag2, container, false);
         ButterKnife.bind(this, view);
 
         nextButton.setOnClickListener(v -> {
@@ -101,10 +103,10 @@ public class StudentFrag3 extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (ThirdFragListener) activity;
+            mListener = (SecondFragListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement ThirdFragListener");
+                    + " must implement SecondFragListener");
         }
     }
 
@@ -114,7 +116,7 @@ public class StudentFrag3 extends Fragment {
         mListener = null;
     }
 
-    public interface ThirdFragListener {
+    public interface SecondFragListener {
         void confirmSignup(String email, String password);
     }
 }

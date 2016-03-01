@@ -3,6 +3,7 @@ package com.zouag.fsdocs.ui;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -12,8 +13,6 @@ import com.zouag.fsdocs.R;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag1;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag2;
 import com.zouag.fsdocs.ui.fragments.student.StudentFrag3;
-
-import junit.framework.Assert;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +36,8 @@ public class StudentActivity extends AppCompatActivity implements
     TextView mSigninTextview;
     @Bind(R.id.signupLabel)
     TextView mSignupTextview;
+    @Bind(R.id.switchLabel)
+    TextView switchLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,21 @@ public class StudentActivity extends AppCompatActivity implements
             }
         });
 
+        switchLabel.setOnClickListener(v ->
+                startActivity(new Intent(StudentActivity.this, TeacherActivity.class)));
+
         displayFragment(0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_container);
+        if (fragment instanceof StudentFrag2) {
+            displayFragment(0);
+        } else if (fragment instanceof StudentFrag3) {
+            displayFragment(1);
+        } else
+            super.onBackPressed();
     }
 
     private void displayFragment(int position) {

@@ -1,4 +1,5 @@
-package com.zouag.fsdocs.ui.fragments.student;
+package com.zouag.fsdocs.ui.fragments.teacher;
+
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -15,10 +16,7 @@ import com.zouag.fsdocs.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class StudentFrag1 extends Fragment {
+public class TeacherFrag1 extends Fragment {
 
     private FirstFragListener mListener;
 
@@ -26,10 +24,12 @@ public class StudentFrag1 extends Fragment {
     EditText firstnameText;
     @Bind(R.id.lastnameText)
     EditText lastnameText;
+    @Bind(R.id.specialtyText)
+    EditText specialtyText;
     @Bind(R.id.nextButton)
     Button nextButton;
 
-    public StudentFrag1() {
+    public TeacherFrag1() {
         // Required empty public constructor
     }
 
@@ -37,14 +37,15 @@ public class StudentFrag1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_student_frag1, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_frag1, container, false);
         ButterKnife.bind(this, view);
 
         nextButton.setOnClickListener(v -> {
             String firstname = firstnameText.getText().toString();
             String lastname = lastnameText.getText().toString();
+            String specialty = specialtyText.getText().toString();
 
-            validateInput(firstname, lastname);
+            validateInput(firstname, lastname, specialty);
         });
 
         return view;
@@ -53,24 +54,26 @@ public class StudentFrag1 extends Fragment {
     /**
      * @param firstname
      * @param lastname
-     *
-     * Validates input.
-     * Checks whether the firstname & lastname have reached (at least) their minimum length.
+     * @param specialty Validates input.
+     *                  Checks whether the firstname & lastname have reached (at least) their minimum length.
      */
-    private void validateInput(String firstname, String lastname) {
+    private void validateInput(String firstname, String lastname, String specialty) {
         String dialogTitle = "Error";
         String dialogMessage;
 
         boolean firstnameStatus = firstname.length() > 1;
         boolean lastnameStatus = lastname.length() > 1;
+        boolean specialtyStatus = lastname.length() > 1;
 
-        if (firstnameStatus && lastnameStatus) {
-            mListener.navigateToSecondFrag(firstname, lastname);
+        if (firstnameStatus && lastnameStatus && specialtyStatus) {
+            mListener.navigateToSecondFrag(firstname, lastname, specialty);
             return;
         } else if (!firstnameStatus) {
-            dialogMessage = "Please enter your real firstname.";
+            dialogMessage = "Please enter your real first name.";
+        } else if (!lastnameStatus) {
+            dialogMessage = "Please enter your real last name.";
         } else {
-            dialogMessage = "Please enter your real lastname.";
+            dialogMessage = "Please provide a description for your specialty.";
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
@@ -98,6 +101,6 @@ public class StudentFrag1 extends Fragment {
     }
 
     public interface FirstFragListener {
-        void navigateToSecondFrag(String firstname, String lastname);
+        void navigateToSecondFrag(String firstname, String lastname, String specialty);
     }
 }
