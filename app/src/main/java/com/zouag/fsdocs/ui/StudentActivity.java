@@ -123,8 +123,8 @@ public class StudentActivity extends AppCompatActivity implements
     public void navigateToSecondFrag(String firstname, String lastname) {
         mUser = new JSONObject();
         try {
-            mUser.put("firstname", firstname);
-            mUser.put("lastname", lastname);
+            mUser.put("fname", firstname);
+            mUser.put("lname", lastname);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -133,12 +133,13 @@ public class StudentActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void navigateToThirdFrag(String cne, String date) {
+    public void navigateToThirdFrag(String cne, String date, int level) {
         assert mUser != null;
 
         try {
             mUser.put("cne", cne);
-            mUser.put("date", date);
+            mUser.put("birthday", date);
+            mUser.put("level", level);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -162,9 +163,7 @@ public class StudentActivity extends AppCompatActivity implements
     /**
      * @param url
      * @param userInfo
-     * @throws IOException
-     *
-     * Sends the sign up, HTTP request
+     * @throws IOException Sends the sign up, HTTP request
      */
     void postSignup(String url, JSONObject userInfo) throws IOException {
         Request request = NodeAPI.createHTTPRequest(userInfo, url, Method.POST);
@@ -187,19 +186,34 @@ public class StudentActivity extends AppCompatActivity implements
                         final JSONObject obj;
 
                         try {
+                            Log.i("RESPONSE", res);
                             obj = new JSONObject(res);
+
+                            String status = obj.getString("status");
+                            String message = obj.getString("msg");
+                            String actionBtnText;
+                            DialogInterface.OnClickListener listener;
+
+                            if (status.equals("Success")) {
+                                // Sign up successful
+                                actionBtnText = "LOG IN NOW";
+                                listener = (dialog, which) -> {
+                                    try {
+                                        navigateToLoginTab();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                };
+                            } else {
+                                // Sign up failed
+                                actionBtnText = "GOT IT";
+                                listener = null;
+                            }
+
+                            // Show dialog
                             runOnUiThread(() ->
-                                    showSignupResultDialog("Success",
-                                            "You have successfully registered your new account!",
-                                            "LOG IN NOW",
-                                            (dialog, which) -> {
-                                                try {
-                                                    Log.i("User", obj.getString("username"));
-                                                    navigateToLoginTab(obj.getString("username"));
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }));
+                                    showSignupResultDialog(status, message,
+                                            actionBtnText, listener));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -208,12 +222,12 @@ public class StudentActivity extends AppCompatActivity implements
     }
 
     /**
-     * @param title of the dialog
-     * @param message of the dialog
+     * @param title      of the dialog
+     * @param message    of the dialog
      * @param actionText text of the dialog's action button
-     * @param listener on the action button
-     *
-     * Shows a custom dialog
+     * @param listener   on the action button
+     *                   <p>
+     *                   Shows a custom dialog
      */
     public void showSignupResultDialog(final String title, final String message, final String actionText,
                                        final DialogInterface.OnClickListener listener) {
@@ -230,12 +244,14 @@ public class StudentActivity extends AppCompatActivity implements
     }
 
     /**
-     * @param email of the user who has just registered.
      * Switches to the Sign in tab of the ViewSwitcher.
      */
-    private void navigateToLoginTab(String email) {
+    private void navigateToLoginTab() throws JSONException {
         mViewSwitcher.showPrevious();
-        emailText.setText(email);
+        isSignin = true;
+        mSignupTextview.setBackgroundColor(getResources().getColor(R.color.inactiveTab));
+        mSigninTextview.setBackgroundColor(getResources().getColor(R.color.activeTab));
+        emailText.setText(mUser.getString("email"));
         passwordText.requestFocus();
     }
 }

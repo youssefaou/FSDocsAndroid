@@ -55,8 +55,9 @@ public class StudentFrag2 extends Fragment {
         nextButton.setOnClickListener(v -> {
             String cne = cneText.getText().toString();
             String birthdate = birthdateText.getText().toString();
+            int level = levelSpinner.getSelectedItemPosition() + 1;
 
-            validateInput(cne, birthdate);
+            validateInput(cne, birthdate, level);
         });
 
         return view;
@@ -64,22 +65,26 @@ public class StudentFrag2 extends Fragment {
 
     /**
      * @param cne
-     * @param birthdate Validates input.
+     * @param birthdate
+     * @param level
      */
-    private void validateInput(String cne, String birthdate) {
+    private void validateInput(String cne, String birthdate, int level) {
         String dialogTitle = "Error";
         String dialogMessage;
 
         boolean cneStatus = cne.length() == 10;
         boolean birthdateStatus = birthdate.length() > 0;
+        boolean levelStatus = level != 0;
 
-        if (cneStatus && birthdateStatus) {
-            mListener.navigateToThirdFrag(cne, birthdate);
+        if (cneStatus && birthdateStatus && levelStatus) {
+            mListener.navigateToThirdFrag(cne, birthdate, level);
             return;
         } else if (!cneStatus) {
             dialogMessage = "Please enter your 10-digits' CNE.";
-        } else {
+        } else if (!birthdateStatus) {
             dialogMessage = "Please enter your correct birth date.";
+        } else {
+            dialogMessage = "Please choose your level of studies.";
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
@@ -107,6 +112,6 @@ public class StudentFrag2 extends Fragment {
     }
 
     public interface SecondFragListener {
-        void navigateToThirdFrag(String cne, String date);
+        void navigateToThirdFrag(String cne, String date, int level);
     }
 }
