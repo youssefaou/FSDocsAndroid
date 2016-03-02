@@ -8,8 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.zouag.fsdocs.R;
 
@@ -23,6 +25,8 @@ public class StudentFrag2 extends Fragment {
 
     private SecondFragListener mListener;
 
+    @Bind(R.id.levelSpinner)
+    Spinner levelSpinner;
     @Bind(R.id.cneText)
     EditText cneText;
     @Bind(R.id.birthdateText)
@@ -40,6 +44,13 @@ public class StudentFrag2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_frag2, container, false);
         ButterKnife.bind(this, view);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(), android.R.layout.simple_list_item_1,
+                new String[]{"Level1", "Level2", "Level3",
+                        "Level4", "Level5", "Level6"}
+        );
+        levelSpinner.setAdapter(adapter);
 
         nextButton.setOnClickListener(v -> {
             String cne = cneText.getText().toString();
