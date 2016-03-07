@@ -11,6 +11,8 @@ import okhttp3.RequestBody;
 
 /**
  * Created by Moham on 1/22/2016.
+ *
+ * Stores different informations to do networking, including the HTTP routes.
  */
 public class NodeAPI {
     public static final String SERVER_IP_ADDRESS = "http://192.168.173.1:5000";
@@ -19,6 +21,7 @@ public class NodeAPI {
             MediaType.parse("application/json; charset=utf-8");
 
     private static final String STUDENT_SIGNUP_POST = "/student/signup";
+    private static final String STUDENT_LOGIN_POST = "/login";
 
     /**
      * @param param  the request's body that contains the request's params to the server
@@ -73,5 +76,9 @@ public class NodeAPI {
 
     public static String getStudentSignupURL() {
         return SERVER_IP_ADDRESS + STUDENT_SIGNUP_POST;
+    }
+
+    public static String getStudentLoginURL() {
+        return SERVER_IP_ADDRESS + STUDENT_LOGIN_POST;
     }
 }

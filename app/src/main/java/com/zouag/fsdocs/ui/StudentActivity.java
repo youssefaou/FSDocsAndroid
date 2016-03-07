@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.zouag.fsdocs.R;
@@ -54,6 +57,8 @@ public class StudentActivity extends AppCompatActivity implements
     EditText emailText;
     @Bind(R.id.passwordText)
     EditText passwordText;
+    @Bind(R.id.loginButton)
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +170,7 @@ public class StudentActivity extends AppCompatActivity implements
      * @param userInfo
      * @throws IOException Sends the sign up, HTTP request
      */
-    void postSignup(String url, JSONObject userInfo) throws IOException {
+    private void postSignup(String url, JSONObject userInfo) throws IOException {
         Request request = NodeAPI.createHTTPRequest(userInfo, url, Method.POST);
 
         client.newCall(request)
@@ -253,5 +258,66 @@ public class StudentActivity extends AppCompatActivity implements
         mSigninTextview.setBackgroundColor(getResources().getColor(R.color.activeTab));
         emailText.setText(mUser.getString("email"));
         passwordText.requestFocus();
+    }
+
+    /**
+     * @param view the button
+     *             Invoked when the user clicks the login button.
+     */
+    public void onLogin(View view) throws JSONException {
+        // Log the student in
+
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
+        JSONObject params = new JSONObject();
+        params.put("email", email);
+        params.put("password", password);
+        postLogin(NodeAPI.getStudentLoginURL(), params);
+    }
+
+    private void postLogin(String url, JSONObject params) {
+        Request request = NodeAPI.createHTTPRequest(params, url, Method.POST);
+        Log.i("POST URL", url);
+
+        client.newCall(request)
+                .enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(() -> Toast.makeText(
+                                StudentActivity.this, "Failed to log in, please try again.",
+                                Toast.LENGTH_LONG).show());
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        try {
+                            String res = response.body().string();
+                            JSONObject obj = new JSONObject(res);
+                            String status = obj.getString("status");
+                            String msg = obj.getString("msg");
+
+                            runOnUiThread(() -> {
+                                if ("SUCCESS".equals(status)) {
+                                    // Login successful
+                                    Toast.makeText(
+                                            StudentActivity.this,
+                                            msg,
+                                            Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    // Invalid credentials
+                                    Toast.makeText(
+                                            StudentActivity.this,
+                                            msg,
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 }
